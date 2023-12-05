@@ -1,21 +1,19 @@
-// context/AppContext.js
+
 import { createContext, useContext, useReducer } from 'react';
 
-// Initial state
+
 const initialState = {
   user: null,
   news: [],
   favorites: [],
 };
 
-// Action types
 const actionTypes = {
   SET_USER: 'SET_USER',
   SET_NEWS: 'SET_NEWS',
   ADD_FAVORITE: 'ADD_FAVORITE',
 };
 
-// Reducer function
 const appReducer = (state, action) => {
   switch (action.type) {
     case actionTypes.SET_USER:
@@ -29,10 +27,8 @@ const appReducer = (state, action) => {
   }
 };
 
-// Create context
 const AppContext = createContext();
 
-// Context provider component
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(appReducer, initialState);
 
@@ -41,7 +37,6 @@ const AppProvider = ({ children }) => {
   );
 };
 
-// Custom hook to use the context
 const useAppContext = () => {
   const context = useContext(AppContext);
   if (!context) {
